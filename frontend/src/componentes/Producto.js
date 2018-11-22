@@ -87,7 +87,7 @@ class Producto extends Component {
 			this.state.SaldoMinimo !== '' &&
 			this.state.estado !== ''){
 
-			axios.post('http://localhost:4000/api/Productodb/create', {
+			axios.post('http://localhost:50948/api/v1/producto', {
 				'id': this.state.id,
 				'CodProducto': this.state.CodProducto,
 				'NombreProducto': this.state.NombreProducto,
@@ -112,7 +112,24 @@ class Producto extends Component {
 	}
 
 	handleClickLeer = () => {
-		alert('Producto cargado');
+		if( this.state.CodProducto !== '' ){
+
+			axios.get('http://localhost:50948/api/v1/producto/'+this.state.CodProducto.toString(), config)
+				.then((result) => {
+					console.log(result);
+					if (result.status === 200){
+							alert(result.data.mensaje);
+							//window.location.href = "/app/Producto";    
+					}else{
+						alert(result.data.mensaje);
+					}
+			})
+			.catch((err) => {
+				alert(err);
+			})
+		}else{
+			alert('Debe llenar campo codigo');
+		}
 	}
 
 	handleClickActualizar = () => {
