@@ -114,12 +114,18 @@ class Producto extends Component {
 	handleClickLeer = () => {
 		if( this.state.CodProducto !== '' ){
 
-			axios.get('http://localhost:50948/api/v1/producto/'+this.state.CodProducto.toString(), config)
+			axios.get('http://localhost:5000/api/v1/producto/'+this.state.CodProducto, {
+            }, config)
 				.then((result) => {
 					console.log(result);
 					if (result.status === 200){
-							alert(result.data.mensaje);
-							//window.location.href = "/app/Producto";    
+						this.setState({
+							id:result.data.id, NombreProducto:result.data.nombreProducto
+							, TipoProducto:result.data.TipoProducto, SaldoMinimo:result.data.SaldoMinimo
+							, estado:result.data.estado
+						});
+						//alert(result.data.nombreProducto);
+						//window.location.href = "/app/Producto";    
 					}else{
 						alert(result.data.mensaje);
 					}
