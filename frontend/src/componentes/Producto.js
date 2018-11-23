@@ -69,30 +69,30 @@ class Producto extends Component {
 		super(props);
 		this.state = {
 			id:'',
-			CodProducto:'',
-			NombreProducto:'',
-			TipoProducto:'',
-			SaldoMinimo:'',
+			codproducto:'',
+			nombreproducto:'',
+			tipoproducto:'',
+			saldominimo:'',
 			estado:'',
-			NombreProductocomponente:'Ingreso Producto',
+			nombreproductocomponente:'Ingreso Producto',
 		};
 	}
 
 	handleClickCrear = () => {
 
 		if( this.state.id !== '' && 
-			this.state.CodProducto !== '' &&
-			this.state.NombreProducto !== '' &&
-			this.state.TipoProducto !== '' &&
-			this.state.SaldoMinimo !== '' &&
+			this.state.codproducto !== '' &&
+			this.state.nombreproducto !== '' &&
+			this.state.tipoproducto !== '' &&
+			this.state.saldominimo !== '' &&
 			this.state.estado !== ''){
 
 			axios.post('http://localhost:50948/api/v1/producto', {
 				'id': this.state.id,
-				'CodProducto': this.state.CodProducto,
-				'NombreProducto': this.state.NombreProducto,
-				'TipoProducto': this.state.TipoProducto,
-				'SaldoMinimo': this.state.SaldoMinimo,
+				'codproducto': this.state.codproducto,
+				'nombreproducto': this.state.nombreproducto,
+				'tipoproducto': this.state.tipoproducto,
+				'saldominimo': this.state.saldominimo,
 				'estado': this.state.estado
 			}, config)
 				.then((result) => {
@@ -112,19 +112,19 @@ class Producto extends Component {
 	}
 
 	handleClickLeer = () => {
-		if( this.state.CodProducto !== '' ){
+		if( this.state.codproducto !== '' ){
 
-			axios.get('http://localhost:5000/api/v1/producto/'+this.state.CodProducto, {
+			axios.get('http://localhost:5000/api/v1/producto/'+this.state.codproducto, {
             }, config)
 				.then((result) => {
 					console.log(result);
 					if (result.status === 200){
 						this.setState({
-							id:result.data.id, NombreProducto:result.data.nombreProducto
-							, TipoProducto:result.data.TipoProducto, SaldoMinimo:result.data.SaldoMinimo
+							id:result.data.id, nombreproducto:result.data.nombreproducto
+							, tipoproducto:result.data.tipoproducto, saldominimo:result.data.saldominimo
 							, estado:result.data.estado
 						});
-						//alert(result.data.nombreProducto);
+						//alert(result.data.nombreproducto);
 						//window.location.href = "/app/Producto";    
 					}else{
 						alert(result.data.mensaje);
@@ -141,18 +141,18 @@ class Producto extends Component {
 	handleClickActualizar = () => {
 		if( 
 		this.state.id !== '' && 
-		this.state.CodProducto !== '' &&
-		this.state.NombreProducto !== '' &&
-		this.state.TipoProducto !== '' &&
-		this.state.SaldoMinimo !== '' &&
+		this.state.codproducto !== '' &&
+		this.state.nombreproducto !== '' &&
+		this.state.tipoproducto !== '' &&
+		this.state.saldominimo !== '' &&
 		this.state.estado !== ''){
 
 		axios.post('http://localhost:4000/api/Productodb/update', {
 			'id': this.state.id,
-			'CodProducto': this.state.CodProducto,
-			'NombreProducto': this.state.NombreProducto,
-			'TipoProducto': this.state.TipoProducto,
-			'SaldoMinimo': this.state.SaldoMinimo,
+			'codproducto': this.state.codproducto,
+			'nombreproducto': this.state.nombreproducto,
+			'tipoproducto': this.state.tipoproducto,
+			'saldominimo': this.state.saldominimo,
 			'estado': this.state.estado
 		}, config)
 			.then((result) => {
@@ -226,44 +226,44 @@ class Producto extends Component {
 					variant="outlined"
 				/>				
 				<TextField
-					id="CodProducto"
+					id="codproducto"
 					label="C&oacute;digo Producto"
 					className={classes.textField}
 					autoComplete="current-password"
 					margin="normal"
-					value={this.state.CodProducto}
-					onChange={e => this.setState({ CodProducto: e.target.value })}
+					value={this.state.codproducto}
+					onChange={e => this.setState({ codproducto: e.target.value })}
 					variant="outlined"
 				/>
 				<TextField
-					id="NombreProducto"
+					id="nombreproducto"
 					label="Nombre Producto"
 					className={classes.textField}
 					autoComplete="current-password"
 					margin="normal"
-					value={this.state.NombreProducto}
-					onChange={e => this.setState({ NombreProducto: e.target.value })}
+					value={this.state.nombreproducto}
+					onChange={e => this.setState({ nombreproducto: e.target.value })}
 					variant="outlined"
 				/>
 				<br/>
 				<TextField
-					id="TipoProducto"
+					id="tipoproducto"
 					label="Tipo Producto"
 					className={classes.textField}
 					autoComplete="current-password"
 					margin="normal"
-					value={this.state.TipoProducto}
-					onChange={e => this.setState({ TipoProducto: e.target.value })}
+					value={this.state.tipoproducto}
+					onChange={e => this.setState({ tipoproducto: e.target.value })}
 					variant="outlined"
 				/>
 				<TextField
-					id="SaldoMinimo"
+					id="saldominimo"
 					label="Saldo Minimo"
 					className={classes.textField}
 					autoComplete="current-password"
 					margin="normal"
-					value={this.state.SaldoMinimo}
-					onChange={e => this.setState({ SaldoMinimo: e.target.value })}
+					value={this.state.saldominimo}
+					onChange={e => this.setState({ saldominimo: e.target.value })}
 					variant="outlined"
 				/>
 				<FormControl variant="outlined" className={classes.formControl}>
