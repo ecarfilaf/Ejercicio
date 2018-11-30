@@ -112,6 +112,13 @@ class Producto extends Component {
 	}
 
 	handleClickLeer = () => {
+		this.setState({
+			id:''
+			, nombreproducto:''
+			, tipoproducto:''
+			, saldominimo:''
+			, estado:''
+		});
 		if( this.state.codproducto !== '' ){
 
 			axios.get('http://localhost:5000/api/v1/producto/'+this.state.codproducto, {
@@ -120,8 +127,10 @@ class Producto extends Component {
 					console.log(result);
 					if (result.status === 200){
 						this.setState({
-							id:result.data.id, nombreproducto:result.data.nombreproducto
-							, tipoproducto:result.data.tipoproducto, saldominimo:result.data.saldominimo
+							id:result.data.id
+							, nombreproducto:result.data.nombreProducto
+							, tipoproducto:result.data.tipoProducto
+							, saldominimo:result.data.saldoMinimo
 							, estado:result.data.estado
 						});
 						//alert(result.data.nombreproducto);
@@ -131,6 +140,7 @@ class Producto extends Component {
 					}
 			})
 			.catch((err) => {
+				console.log(err);
 				alert(err);
 			})
 		}else{

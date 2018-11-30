@@ -28,7 +28,8 @@ namespace WebAPI.Controllers
 
             if(Producto == null)
             {
-                return BadRequest($"El Producto {CodProducto} no se encuentra registrado.");
+                //return ResponseMessageResult($"El Producto {CodProducto} no se encuentra registrado.");
+				return Ok(new object[2]{"mesage","El Producto {CodProducto} no se encuentra registrado."});
             }
 
             return Ok(Producto);
