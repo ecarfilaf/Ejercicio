@@ -29,7 +29,10 @@ namespace WebAPI.Controllers
             if(Producto == null)
             {
                 //return BadRequest($"El Producto {CodProducto} no se encuentra registrado.");
-				return NotFound(new object[1]{$"El Producto {CodProducto} no se encuentra registrado."});
+				//return NotFound(new object[1]{$"El Producto {CodProducto} no se encuentra registrado."});
+				Producto=new Models.Producto.producto();
+				Producto.CodStatus=1;
+				Producto.DesStatus=$"El Producto {CodProducto} no se encuentra registrado.";
             }
 
             return Ok(Producto);
