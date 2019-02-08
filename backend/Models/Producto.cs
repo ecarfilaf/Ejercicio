@@ -15,7 +15,7 @@ namespace Models
 		public int CodStatus { get; set; }
         public string DesStatus { get; set; }
 
-		public Producto producto(){
+		public Producto (){
 			this.Id=0;
 			this.CodProducto="";
 			this.NombreProducto="";
