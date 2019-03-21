@@ -24,20 +24,22 @@ namespace WebAPI.Controllers
         [HttpGet("{CodProducto}")]
         public IActionResult Get(string CodProducto)
         {
+			var objResp = new Models.Respuesta();
+
             var Producto = this.dbProducto.GetByCodProducto(CodProducto);
+
+			objResp.Data=Producto;
 
             if(Producto == null)
             {
 				//return BadRequest($"El Producto {CodProducto} no se encuentra registrado.");
 				//return NotFound(new object[1]{$"El Producto {CodProducto} no se encuentra registrado."});
-				Producto = new Models.Producto
-				{
-					CodStatus = 1,
-					DesStatus = $"El Producto {CodProducto} no se encuentra registrado."
-				};
+
+				objResp.ErrCode = 1;
+				objResp.ErrDesc  = $"El Producto {CodProducto} no se encuentra registrado.";
 			}
 
-            return Ok(Producto);
+            return Ok(objResp);
         }
 
         [HttpPost]
