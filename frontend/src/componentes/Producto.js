@@ -126,13 +126,18 @@ class Producto extends Component {
 				.then((result) => {
 					console.log(result);
 					if (result.status === 200){
-						this.setState({
-							id:result.data.id
-							, nombreproducto:result.data.nombreProducto
-							, tipoproducto:result.data.tipoProducto
-							, saldominimo:result.data.saldoMinimo
-							, estado:result.data.estado
-						});
+						var datos= result.data.data;
+						if (result.data.errCode == 0){
+							this.setState({
+								id:datos.id
+								, nombreproducto:datos.nombreProducto
+								, tipoproducto:datos.tipoProducto
+								, saldominimo:datos.saldoMinimo
+								, estado:datos.estado
+							});
+						}else{
+							alert(result.data.errDesc);
+						};
 						//alert(result.data.nombreproducto);
 						//window.location.href = "/app/Producto";    
 					}else{
