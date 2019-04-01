@@ -51,8 +51,7 @@ namespace Database
             }
             catch(Exception ex)
             {
-                //throw new Exception("No fue posible crear el cliente");
-                return null;
+                throw new Exception("No fue posible crear el cliente, por: " + ex.ToString());
             }
         }
 
@@ -64,8 +63,7 @@ namespace Database
 
                 if (cliente == null)
                 {
-                    //throw new Exception($"El cliente {rut} no se puede eliminar debido a no existe.");
-                    return null;
+                    throw new Exception($"El cliente {rut} no se puede eliminar debido a no existe.");
                 }
 
                 this
@@ -78,8 +76,7 @@ namespace Database
             }
             catch(Exception ex)
             {
-                //throw new Exception($"No fue posible eliminar el usuario {rut}");
-                return null;
+                throw new Exception($"No fue posible eliminar el usuario {rut}, por: " + ex.ToString());
             }
         }
 
