@@ -80,14 +80,14 @@ class Producto extends Component {
 
 	handleClickCrear = () => {
 
-		if( this.state.id !== '' && 
-			this.state.codproducto !== '' &&
+		if( this.state.codproducto !== '' &&
 			this.state.nombreproducto !== '' &&
 			this.state.tipoproducto !== '' &&
 			this.state.saldominimo !== '' &&
 			this.state.estado !== ''){
 
-			axios.post('http://localhost:50948/api/v1/producto', {
+			console.log('crear_click');
+			axios.post('http://localhost:50000/api/v1/producto', {
 				'id': this.state.id,
 				'codproducto': this.state.codproducto,
 				'nombreproducto': this.state.nombreproducto,
@@ -96,6 +96,7 @@ class Producto extends Component {
 				'estado': this.state.estado
 			}, config)
 				.then((result) => {
+					console.log(result);
 					if (result.status === 200){
 							alert(result.data.mensaje);
 							//window.location.href = "/app/Producto";    
@@ -136,6 +137,9 @@ class Producto extends Component {
 								, estado:datos.estado
 							});
 						}else{
+							this.setState({
+								id:0
+							});
 							alert(result.data.errDesc);
 						};
 						//alert(result.data.nombreproducto);
